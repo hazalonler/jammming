@@ -1,14 +1,19 @@
 import Track from "./Track";
-
-const Tracklist = () => {
+import './Tracklist.css';
+const Tracklist = (props) => {
 
     return (
-        <div>
-            <Track 
-            />
+        <div className="list">
+            {props.tracklist.map((track) =>
+                <Track 
+                    key={track.id}
+                    name={track.name}
+                    artist={track.artist}
+                    album={track.album}    
+                />
+            )}
         </div>
     );
-
 };
 
 export default Tracklist;

@@ -28,5 +28,6 @@ button {
     height: 2.5rem;
     padding: 4px;
     border: 0.1rem solid purple;
-    background-color: gainsboro;
+    background-color: seashell;
+    cursor: pointer;
 }

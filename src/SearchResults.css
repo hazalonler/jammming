@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: start;
     margin: 10px 10px 0 300px;
+    background-color: seashell;
 }
 
 h2 {
@@ -10,21 +11,3 @@ h2 {
     margin: 5px 5px 0 5px;
 }
 
-.list {
-    display: flex;
-    justify-content: start;
-    flex-wrap: wrap;
-    
-}
-
-.track {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: start;
-    background-color: blueviolet;
-    padding: 1rem;
-    margin: 5px 5px 0 5px;
-    height: 250px;
-    width: 250px;
-}

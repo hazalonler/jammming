@@ -1,14 +1,13 @@
+import './Track.css';
 
-
-const Track = (props) => {
-
+const Track = ({key, name, artist, album}) => {
     return (
         <div>
-            <div>
-                <div>{props.song}</div>
-                <div>{props.artist}</div>
+            <div className="track">
+                <div>{name.length > 25 ? name.slice(0,25) + "..." : name}</div>
+                <div>{artist.length > 25 ? artist.slice(0,25) + "..." : artist}</div>
+                <div>{album.length > 25 ? album.slice(0,25) + "..." : album}</div>
             </div>
-            <div>{props.album}</div>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
+import Playlist from './Playlist';
 
 import './App.css';
 
@@ -12,6 +13,7 @@ function App() {
         <div className="login">Log In</div>
       </header>
       <SearchResults/>
+      <Playlist />
     </div>
   );
 }

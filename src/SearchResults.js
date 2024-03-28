@@ -1,7 +1,5 @@
 
-import { useState } from "react";
-import "./SearchResults.module.css";
-import Tracklist from "./Tracklist";
+import "./SearchResults.css";
 
 
 const SearchResults = () => {
@@ -21,12 +19,40 @@ const SearchResults = () => {
             song: "Bikinisinde Astronomi",
             artist: "Son Feci Bisiklet",
             album: "Son Feci EP"
-        },  
+        },
+        {
+            song: "Bikinisinde Astronomi",
+            artist: "Son Feci Bisiklet",
+            album: "Son Feci EP"
+        },
+        
+        {
+            song: "Bikinisinde Astronomi",
+            artist: "Son Feci Bisiklet",
+            album: "Son Feci EP"
+        }, 
+        {
+            song: "Geceler kara Tren",
+            artist: "Nazan Once",
+            album: "Ben Boyle Ask Gormedim"
+        }, 
     ]
 
     return (
-        <div className="results">
-            <Tracklist tracklist={results} />
+        <div className="search-results">
+            <div className="title">
+                <h2>Results</h2>
+            </div>
+            <div className="list">
+                {results.map((track) =>
+                    <div className="track">
+                        <div>{track.song}</div>
+                        <div>{track.artist}</div>
+                        <div>{track.album}</div>
+                    </div>
+                )}
+            </div>
+            
         </div>
     );
 

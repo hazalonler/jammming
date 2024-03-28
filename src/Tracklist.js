@@ -1,16 +1,11 @@
 import Track from "./Track";
 
-const Tracklist = (props) => {
+const Tracklist = () => {
 
     return (
         <div>
-            {props.tracklist.map((track) => 
-                <Track 
-                    song={track.song} 
-                    artist={track.artist} 
-                    album={track.album}
-                />
-            )}
+            <Track 
+            />
         </div>
     );
 

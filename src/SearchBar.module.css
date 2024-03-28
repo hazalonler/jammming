@@ -19,6 +19,7 @@ input {
     margin: 0.8rem;
     border-radius: 1rem;
     width: fit-content;
+    border: 0.1rem solid purple;
 }
 
 button {
@@ -26,4 +27,6 @@ button {
     border-radius: 1.5rem;
     height: 2.5rem;
     padding: 4px;
+    border: 0.1rem solid purple;
+    background-color: gainsboro;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import Playlist from './Playlist';
@@ -64,13 +64,15 @@ function App() {
     ]
   );
 
-  const addTrack = (track) => {
-      if (playlist.some((savedTrack) => savedTrack.id === track.id)) {
+  const addTrack = useCallback(
+    (track) => {
+      if (playlist.some((savedTrack) => savedTrack.id === track.id))
         return;
-      } else {
-        setPlaylist((prevPlaylist) => [...prevPlaylist, track]);
-      }
-  }
+
+      setPlaylist((prevTracks) => [...prevTracks, track]);
+    },
+    [playlist]
+  );
 
   
   return (

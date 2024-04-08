@@ -1,11 +1,23 @@
 .track {
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+    width: 250px;
+    margin: 0.8rem 0.8rem 0 0.8rem;
+    background-color: blueviolet;
+
+}
+
+.songInfo {
     display: inline-flex;
     flex-direction: column;
     justify-content: end;
     text-align: start;
-    background-color: blueviolet;
     padding: 1rem;
-    margin: 0.8rem 0.8rem 0 0.8rem;
-    height: 250px;
-    width: 250px;
+}
+
+.addButton {
+    display: inline-flex;
+    align-items: end;
+    padding: 1rem;
 }

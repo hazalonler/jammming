@@ -1,16 +1,14 @@
 import Track from "./Track";
 import './Tracklist.css';
-const Tracklist = (props) => {
-
+const Tracklist = ({tracklist, onAdd}) => {
 
     return (
         <div className="list">
-            {props.tracklist.map((track) =>
+            {tracklist.map((track) =>
                 <Track 
                     key={track.id}
-                    name={track.name}
-                    artist={track.artist}
-                    album={track.album}    
+                    track={track}
+                    onAdd={onAdd}    
                 />
             )}
         </div>

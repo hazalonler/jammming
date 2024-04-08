@@ -29,9 +29,7 @@ const Playlist = (props) => {
                 {props.playlist.map((track) =>
                     <Track 
                         key={track.id}
-                        name={track.name}
-                        artist={track.artist}
-                        album={track.album}    
+                        track={track}   
                     />
                 )}
             </div>  

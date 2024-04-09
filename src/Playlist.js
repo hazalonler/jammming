@@ -22,19 +22,20 @@ const Playlist = (props) => {
             <div className='playlist'>
                 <h2>Playlist</h2>
             </div>
-            <form onSubmit={handleSubmit} className='naming'>
+            <div className='naming'>
                 <input type='text' value={name} onChange={handleInput} />
-            </form>
-            <div className="list">
-                {props.playlist.map((track) =>
-                    <Track 
-                        key={track.id}
-                        track={track}   
-                    />
-                )}
-            </div>  
-            <div className='button'>
-                <button className='save'>Save To Spotify</button>
+                <div className="list">
+                    {props.playlist.map((track) =>
+                        <Track 
+                            key={track.id}
+                            track={track}
+                            onRemove={props.onRemove}   
+                        />
+                    )}
+                </div>  
+                <div className='button'>
+                    <button className='save' onSubmit={handleSubmit}>Save To Spotify</button>
+                </div>
             </div>
         </div>
     );

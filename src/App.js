@@ -65,13 +65,20 @@ function App() {
   );
 
   const addTrack = useCallback(
-    (track) => {
-      if (playlist.some((savedTrack) => savedTrack.id === track.id))
-        return;
-
+    (track) => { 
+      setResults(
+        (prevTracks) => prevTracks.filter((currentTrack) => currentTrack.id !== track.id)
+      );
       setPlaylist((prevTracks) => [...prevTracks, track]);
-    },
-    [playlist]
+    },[]
+  );
+
+  const removeTrack = useCallback(
+    (track) => { 
+      setPlaylist(
+        (prevTracks) => prevTracks.filter((currentTrack) => currentTrack.id !== track.id)
+      ); 
+    }, []
   );
 
   
@@ -83,7 +90,7 @@ function App() {
         <div className="login">Log In</div>
       </header>
       <SearchResults results={results} onAdd={addTrack}/>
-      <Playlist playlist={playlist}/>
+      <Playlist playlist={playlist} onRemove={removeTrack}/>
     </div>
   );
 }

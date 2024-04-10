@@ -3,7 +3,7 @@ import './Track.css';
 
 const Track = (props) => {
 
-    const [isRemoval, setIsRemoval] = useState(true);
+    const [isRemoval, setIsRemoval] = useState(false);
 
     const addTrack = useCallback(
         () => {

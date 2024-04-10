@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Track from './Track';
 import './Playlist.css';
+import Tracklist from './Tracklist';
 
 
 const Playlist = (props) => {
 
-    const [name, setName] = useState('Kalben Fav List');
-
-    const handleInput = (event) => {
-        setName(event.target.value);
-    };
-    
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        alert(`Playlist made Successfully!\nYour playlist was ${props.playlist}`);
-    }; 
-
+    const handleInput = useCallback((event) => {
+            props.onNameChange(event.target.value);
+        }, [props.onNameChange]
+    );
 
     return (
         <div className='container'>
@@ -23,18 +17,10 @@ const Playlist = (props) => {
                 <h2>Playlist</h2>
             </div>
             <div className='naming'>
-                <input type='text' value={name} onChange={handleInput} />
-                <div className="list">
-                    {props.playlist.map((track) =>
-                        <Track 
-                            key={track.id}
-                            track={track}
-                            onRemove={props.onRemove}   
-                        />
-                    )}
-                </div>  
+                <input type='text' defaultValue={'New Playlist'} onChange={handleInput} />
+                <Tracklist tracklist={props.playlist} onRemove={props.onRemove}/>  
                 <div className='button'>
-                    <button className='save' onSubmit={handleSubmit}>Save To Spotify</button>
+                    <button className='save' onClick={props.onSave} >Save To Spotify</button>
                 </div>
             </div>
         </div>

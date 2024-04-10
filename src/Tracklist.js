@@ -1,6 +1,6 @@
 import Track from "./Track";
 import './Tracklist.css';
-const Tracklist = ({tracklist, onAdd}) => {
+const Tracklist = ({tracklist, onAdd, onRemove}) => {
 
     return (
         <div className="list">
@@ -8,7 +8,8 @@ const Tracklist = ({tracklist, onAdd}) => {
                 <Track 
                     key={track.id}
                     track={track}
-                    onAdd={onAdd}    
+                    onAdd={onAdd}
+                    onRemove={onRemove}    
                 />
             )}
         </div>

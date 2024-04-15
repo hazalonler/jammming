@@ -33,11 +33,7 @@ function App() {
             artist: "Nazan Once",
             album: "Ben Boyle Ask Gormedim"
         }, 
-    ]
-  );
-
-  const [playlist, setPlaylist] = useState([
-      {
+        {
           uri: 'spotify:track:7srtV4NCdSZYV4hD5ypdnN',
           id: "ba12ur34",
           name: "Al Beni",
@@ -53,7 +49,7 @@ function App() {
       }, 
       {
           uri: 'spotify:track:03RzD0WAxZsEmFB5Qw4ygK',
-          id: "fdiw94qn",
+          id: "fdiw9u4n",
           name: "Doya Doya",
           artist: "Kalben",
           album: "Kalben"
@@ -67,7 +63,8 @@ function App() {
       },
     ]
   );
-  
+
+  const [playlist, setPlaylist] = useState([]);
   const [playlistName, setPlaylistName] = useState('New Playlist');
   const [savedTracksURL, setSavedTracksURL] = useState([]);
 
@@ -94,12 +91,10 @@ function App() {
 
   const saveTracks = useCallback (() => {
     const tracksURL = playlist.map((track) => track.uri);
-    setSavedTracksURL(playlistName, tracksURL);
-    console.log(savedTracksURL);
+    setSavedTracksURL([playlistName, tracksURL]);
     alert(`Playlist made Successfully!\nYour playlist was ${savedTracksURL}`);
   }, [playlist, playlistName]);
 
-  
   return (
     <div className="App">
       <header className="App-header">
@@ -108,7 +103,13 @@ function App() {
         <div className="login">Log In</div>
       </header>
       <SearchResults results={results} onAdd={addTrack}/>
-      <Playlist playlist={playlist} onRemove={removeTrack} onSave={saveTracks} playlistName={playlistName} onNameChange={updatePlaylistName}/>
+      <Playlist 
+        playlist={playlist} 
+        onRemove={removeTrack} 
+        onSave={saveTracks} 
+        playlistName={playlistName} 
+        onNameChange={updatePlaylistName}
+      />
     </div>
   );
 }

@@ -18,7 +18,7 @@ const Playlist = (props) => {
             </div>
             <div className='naming'>
                 <input type='text' defaultValue={'New Playlist'} onChange={handleInput} />
-                <Tracklist tracklist={props.playlist} onRemove={props.onRemove}/>  
+                <Tracklist tracklist={props.playlist} onRemove={props.onRemove} isRemoval={true}/>  
                 <div className='button'>
                     <button className='save' onClick={props.onSave} >Save To Spotify</button>
                 </div>

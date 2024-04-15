@@ -3,23 +3,21 @@ import './Track.css';
 
 const Track = (props) => {
 
-    const [isRemoval, setIsRemoval] = useState(false);
-
     const addTrack = useCallback(
         () => {
-            setIsRemoval(true);
             props.onAdd(props.track);
         }, 
-        [props.onAdd]
+        [props.onAdd, props.track]
     );
 
-    const removeTrack = () => {
-        setIsRemoval(false);
-        props.onRemove(props.track);
-    };
+    const removeTrack = useCallback(
+        (event) => {
+            props.onRemove(props.track)   
+        }, [props.onRemove, props.track]
+    );
 
     const addOrRemove = () => {
-        if (isRemoval) {
+        if (props.isRemoval) {
             return (
                 <div className='addOrRemoveButton'>
                     <button onClick={removeTrack}> - </button>

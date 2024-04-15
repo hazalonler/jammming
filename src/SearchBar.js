@@ -17,7 +17,7 @@ const SearchBar = () => {
 
     return (
         <form onSubmit={handleSubmit} >
-            <input type="text" value={search} onChange={handleInput}/>
+            <input type="text" value={search} onChange={handleInput} placeholder="Enter song name..."/>
             <button>Search</button>
         </form>
     );

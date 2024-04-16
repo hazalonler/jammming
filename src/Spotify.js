@@ -3,7 +3,7 @@ const redirectURI = 'http://localhost:3000/?';
 let accessToken;
 const baseURI = 'https://api.spotify.com'
 
-function getAccessToken () {
+export function getAccessToken () {
     if (accessToken) {
         return accessToken;
     }
@@ -22,25 +22,56 @@ function getAccessToken () {
     }
 }
 
-function getTrack (term) {
+export async function getTrack (term) {
     const accessToken = getAccessToken();
-    return fetch(`${baseURI}/v1/search?type=track&q=${term}`, {
+    const response = await fetch(`${baseURI}/v1/search?type=track&q=${term}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
-    }).then(response => {
-      return response.json();
-    }).then(jsonResponse => {
-      if (!jsonResponse.tracks) {
+    });
+    let data;
+    if (response.ok) {
+        data = await response.json();
+    } 
+    if (!data.tracks) {
         return [];
-      }
-      return jsonResponse.tracks.items.map(track => ({
+    }
+    return data.tracks.items.map(track => ({
         id: track.id,
         name: track.name,
         artist: track.artists[0].name,
         album: track.album.name,
         uri: track.uri
-      }));
-    });
-
+    }));
 }
+
+export async function savePlaylist (name, trackURIs) {
+    const accessToken = getAccessToken();
+    let userID;
+
+    const response = await fetch(`${baseURI}/v1/me`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    }).then(response => response.json()
+    ).then(responseJSON => {
+        userID = responseJSON.id
+    })
+    
+    const postResponse = await fetch(`${baseURI}/v1/users/${userID}/playlists`, {
+        headers: {Authorization: `Bearer ${accessToken}`},
+        method: 'POST',
+        body: JSON.stringify({name: name})
+    }).then(response => response.json()
+    ).then(responseJSON => {
+        const playlistId = responseJSON.id;
+        return fetch(`https://api.spotify.com/v1/users/${userID}/playlists/${playlistId}/tracks`, {
+          headers: {Authorization: `Bearer ${accessToken}`},
+          method: 'POST',
+          body: JSON.stringify({uris: trackURIs})
+        });
+    })
+}
+
+
+ 

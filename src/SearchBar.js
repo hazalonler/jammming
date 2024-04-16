@@ -1,25 +1,24 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./SearchBar.module.css";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
 
-    const [search, setSearch] = useState('');
+    const [term, setTerm] = useState('');
 
     const handleInput = (event) => {
-        setSearch(event.target.value);
+        setTerm(event.target.value);
     };
     
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        alert(`Search Successful!\nYour search was ${search}`);
-    }; 
+    const handleSearch = useCallback(() => {
+     props.onSearch(term);   
+    }, [props.onSearch, term]); 
 
 
     return (
-        <form onSubmit={handleSubmit} >
-            <input type="text" value={search} onChange={handleInput} placeholder="Enter song name..."/>
-            <button>Search</button>
-        </form>
+        <div id="search-bar" onSubmit={handleSearch} >
+            <input type="text" value={term} onChange={handleInput} placeholder="Enter song name..."/>
+            <button onClick={handleSearch}>Search</button>
+        </div>
     );
 
 };

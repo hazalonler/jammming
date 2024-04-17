@@ -24,53 +24,67 @@ export function getAccessToken () {
 
 export async function getTrack (term) {
     const accessToken = getAccessToken();
-    const response = await fetch(`${baseURI}/v1/search?type=track&q=${term}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
-    let data;
-    if (response.ok) {
-        data = await response.json();
-    } 
-    if (!data.tracks) {
-        return [];
+    try {
+        const response = await fetch(`${baseURI}/v1/search?type=track&q=${term}`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            return data.tracks.items.map(track => ({
+                id: track.id,
+                name: track.name,
+                artist: track.artists[0].name,
+                album: track.album.name,
+                uri: track.uri
+            }));
+        } else {
+            return [];
+        }
+    } catch (error) {
+        alert(`Request to Spotify API was failed ${error}`);
     }
-    return data.tracks.items.map(track => ({
-        id: track.id,
-        name: track.name,
-        artist: track.artists[0].name,
-        album: track.album.name,
-        uri: track.uri
-    }));
 }
 
 export async function savePlaylist (name, trackURIs) {
     const accessToken = getAccessToken();
     let userID;
 
-    const response = await fetch(`${baseURI}/v1/me`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    }).then(response => response.json()
-    ).then(responseJSON => {
-        userID = responseJSON.id
-    })
+    try {
+        const response = await fetch(`${baseURI}/v1/me`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`
+            }
+          }).then(response => response.json()
+          ).then(responseJSON => {
+              userID = responseJSON.id
+          })
+    } catch (err) {
+        alert('Failed to get userID');
+    }
+
+    try {
+        const postResponse = await fetch(`${baseURI}/v1/users/${userID}/playlists`, {
+            headers: {Authorization: `Bearer ${accessToken}`},
+            method: 'POST',
+            body: JSON.stringify({name: name})
+        }).then(response => response.json()
+        ).then(responseJSON => {
+            const playlistId = responseJSON.id;
+            return fetch(`https://api.spotify.com/v1/users/${userID}/playlists/${playlistId}/tracks`, {
+              headers: {Authorization: `Bearer ${accessToken}`},
+              method: 'POST',
+              body: JSON.stringify({uris: trackURIs})
+            });
+        })
+    } catch (err) {
+        alert('Failed to get saved');
+    }
+
     
-    const postResponse = await fetch(`${baseURI}/v1/users/${userID}/playlists`, {
-        headers: {Authorization: `Bearer ${accessToken}`},
-        method: 'POST',
-        body: JSON.stringify({name: name})
-    }).then(response => response.json()
-    ).then(responseJSON => {
-        const playlistId = responseJSON.id;
-        return fetch(`https://api.spotify.com/v1/users/${userID}/playlists/${playlistId}/tracks`, {
-          headers: {Authorization: `Bearer ${accessToken}`},
-          method: 'POST',
-          body: JSON.stringify({uris: trackURIs})
-        });
-    })
+    
+    
 }
 
 

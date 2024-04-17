@@ -4,6 +4,7 @@
     align-items: start;
     margin: 10px 10px 0 300px;
     background-color: seashell;
+    min-height: 300px;
 }
 
 h2 {

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import "./SearchBar.module.css";
+import "./SearchBar.css";
 
 const SearchBar = (props) => {
 
@@ -15,7 +15,7 @@ const SearchBar = (props) => {
 
 
     return (
-        <div id="search-bar" onSubmit={handleSearch} >
+        <div id="search" onSubmit={handleSearch} >
             <input type="text" value={term} onChange={handleInput} placeholder="Enter song name..."/>
             <button onClick={handleSearch}>Search</button>
         </div>

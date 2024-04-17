@@ -15,15 +15,15 @@ function App() {
 
   const search = useCallback((term) => {
     getTrack(term).then(setResults);
-  }, [])
+  }, []);
 
   const addTrack = useCallback(
-    (track) => { 
-      setResults(
-        (prevTracks) => prevTracks.filter((currentTrack) => currentTrack.id !== track.id)
-      );
+    (track) => {
+      if (playlist.some((savedTrack) => savedTrack.id === track.id))
+        return;
       setPlaylist((prevTracks) => [...prevTracks, track]);
-    },[]
+    },
+    [playlist]
   );
 
   const removeTrack = useCallback(
@@ -40,8 +40,10 @@ function App() {
 
   const saveTracks = useCallback (() => {
     const tracksURL = playlist.map((track) => track.uri);
-    setSavedTracksURL([playlistName, tracksURL]);
-    alert(`Playlist made Successfully!\nYour playlist was ${savedTracksURL}`);
+    savePlaylist(playlistName, tracksURL).then(() => {
+      setPlaylist([]);
+      setPlaylistName('New Playlist');
+    });
   }, [playlist, playlistName]);
 
   return (

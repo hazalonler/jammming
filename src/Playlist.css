@@ -1,8 +1,10 @@
 .container {
     display: flex;
     flex-direction: column;
-    margin: 10px 10px 0 300px;
-    background-color: seashell;
+    margin: 2rem 2rem 0 300px;
+    border-radius: 1rem;
+    background-color: rgb(0,102,51);
+    color: seashell;
     min-height: 400px;
 }
 
@@ -16,6 +18,7 @@
     align-items: start;
     justify-content: start;
     padding: 0;
+    height: 100px;
 }
 
 .naming input {
@@ -23,7 +26,7 @@
     border: none;
     border-bottom: 2px solid purple;
     background-color: seashell;
-    border-radius: 0;
+    border-radius: 6px;
 }
 
 

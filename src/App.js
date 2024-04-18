@@ -11,7 +11,6 @@ function App() {
   const [results, setResults] = useState([]);
   const [playlist, setPlaylist] = useState([]);
   const [playlistName, setPlaylistName] = useState('New Playlist');
-  const [savedTracksURL, setSavedTracksURL] = useState([]);
 
   const search = useCallback((term) => {
     getTrack(term).then(setResults);
@@ -46,12 +45,28 @@ function App() {
     });
   }, [playlist, playlistName]);
 
+  const handleDarkToggle = () => {
+    document.body.classList.toggle('dark-mode')
+    if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enable');
+    } else {
+        localStorage.setItem('darkMode', 'disable');
+    }
+  };
+
+  if (localStorage.getItem('darkMode') === 'enable') {
+    document.body.classList.add('dark-mode') 
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Jammming</h1>
+        <h1>Ja<p className='thremmm'>mmm</p>ing</h1>
         <SearchBar className="searchbar" onSearch={search}/>
-        <div className="login">Log In</div>
+        <div className="login">
+          <button className='darkToggle' onClick={handleDarkToggle}>Dark/Light</button>
+          <div>Log In</div>
+        </div>
       </header>
       <SearchResults results={results} onAdd={addTrack}/>
       <Playlist 

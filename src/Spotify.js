@@ -81,10 +81,6 @@ export async function savePlaylist (name, trackURIs) {
     } catch (err) {
         alert('Failed to get saved');
     }
-
-    
-    
-    
 }
 
 

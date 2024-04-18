@@ -5,6 +5,10 @@
   font-family: 'Rubik', 'Courier New', Courier, monospace, sans-serif;
 }
 
+.dark-mode {
+  background-color: black;
+}
+
 .App {
   text-align: center;
 }
@@ -13,18 +17,34 @@
   display: flex;
   align-items: center;
   padding: 1rem;
-  border: 0.3rem solid purple;
-  background-color: seashell;
+  border-radius: 1rem;
+  background-color: rgb(0,102,51);
+  color: seashell;
+  margin: 2rem 2rem 0 2rem;
+}
+
+.thremmm {
+  color: rgb(204,0,204);
+  font-size: 2.5rem;
 }
 
 h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-basis: 300px;
   font-size: 2.5rem;
 }
 
 .login {
+  display: flex;
+  align-items: center;
   flex-basis: 200px;
   font-weight: 600;
+}
+
+.darkToggle {
+  margin-right: 2px;
 }
 
 

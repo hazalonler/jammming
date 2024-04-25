@@ -1,5 +1,5 @@
 const clientID = 'cc748eb4bfed4f8588f500f7013011e7';
-const redirectURI = 'http://localhost:3000/?';
+const redirectURI = 'https://lively-lokum-45a46d.netlify.app/';
 let accessToken;
 const baseURI = 'https://api.spotify.com'
 

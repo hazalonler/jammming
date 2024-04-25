@@ -2,7 +2,7 @@
 # Jammming
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-This project was build and can be found in the link [https://lively-lokum-45a46d.netlify.app] (https://lively-lokum-45a46d.netlify.app) 
+This project was build and can be found in the link [https://lively-lokum-45a46d.netlify.app](https://lively-lokum-45a46d.netlify.app) 
  
 ## Scope of The Project
 

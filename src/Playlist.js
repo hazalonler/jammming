@@ -1,5 +1,4 @@
-import React, { useCallback, useState } from 'react';
-import Track from './Track';
+import React, { useCallback } from 'react';
 import './Playlist.css';
 import Tracklist from './Tracklist';
 
@@ -8,7 +7,7 @@ const Playlist = (props) => {
 
     const handleInput = useCallback((event) => {
             props.onNameChange(event.target.value);
-        }, [props.onNameChange]
+        }, [props]
     );
 
     return (

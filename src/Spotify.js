@@ -47,12 +47,12 @@ export async function getTrack (term) {
     }
 }
 
-export async function savePlaylist (name, trackURIs) {
+export function savePlaylist (name, trackURIs) {
     const accessToken = getAccessToken();
     let userID;
 
     try {
-        const response = await fetch(`${baseURI}/v1/me`, {
+        fetch(`${baseURI}/v1/me`, {
             headers: {
               Authorization: `Bearer ${accessToken}`
             }
@@ -65,7 +65,7 @@ export async function savePlaylist (name, trackURIs) {
     }
 
     try {
-        const postResponse = await fetch(`${baseURI}/v1/users/${userID}/playlists`, {
+        fetch(`${baseURI}/v1/users/${userID}/playlists`, {
             headers: {Authorization: `Bearer ${accessToken}`},
             method: 'POST',
             body: JSON.stringify({name: name})

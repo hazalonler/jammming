@@ -9,9 +9,9 @@ const SearchBar = (props) => {
         setTerm(event.target.value);
     };
     
-    const handleSearch = useCallback(() => {
-     props.onSearch(term);   
-    }, [props.onSearch, term]); 
+    const handleSearch = useCallback((event) => {
+        props.onSearch(term);   
+    }, [props, term]); 
 
 
     return (

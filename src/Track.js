@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import './Track.css';
 
 const Track = (props) => {
@@ -7,13 +7,13 @@ const Track = (props) => {
         () => {
             props.onAdd(props.track);
         }, 
-        [props.onAdd, props.track]
+        [props]
     );
 
     const removeTrack = useCallback(
         (event) => {
             props.onRemove(props.track)   
-        }, [props.onRemove, props.track]
+        }, [props]
     );
 
     const addOrRemove = () => {
